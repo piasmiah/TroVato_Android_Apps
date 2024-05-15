@@ -35,8 +35,8 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_sign_in);
 
-//        /*hide action bar*/
-//        getSupportActionBar().hide();
+        /*hide action bar*/
+        getSupportActionBar().hide();
 
         /*when user login this account then auto sign in*/
         isUserSigninauto();

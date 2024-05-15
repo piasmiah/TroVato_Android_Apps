@@ -24,25 +24,27 @@ public class SliderAdapter extends PagerAdapter {
 
     int images[]
             = {
-            R.drawable.search_place,
-            R.drawable.bg_image_001,
-            R.drawable.add_missing_place,
-            R.drawable.sit_back_and_relax
+            R.drawable.trovato,
+            R.drawable.rules_image,
+            R.drawable.sign_up_image,
+            R.drawable.sign_in_image,
+            R.drawable.all_set
     };
 
     int headings[] = {
             R.string.first_slide_title,
+            R.string.fifth_slide_title,
             R.string.second_slide_title,
             R.string.third_slide_title,
             R.string.fourth_slide_title
     };
 
-    int description[] =
-            {
-                    R.string.first_slide_desc,
-                    R.string.second_slide_desc,
-                    R.string.third_slide_desc,
-                    R.string.fourth_slide_desc
+    int description[] = {
+            R.string.first_slide_desc,
+            R.string.fifth_slide_desc,
+            R.string.second_slide_desc,
+            R.string.third_slide_desc,
+            R.string.fourth_slide_desc
             };
 
 

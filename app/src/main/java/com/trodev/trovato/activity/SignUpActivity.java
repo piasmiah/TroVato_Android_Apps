@@ -29,10 +29,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
-
     private TextView signin;
     private MaterialButton signup;
-    private EditText username, emailET, ageET, instituteEt, passwordET, numberET;
+    private EditText username, emailET, passwordET, numberET;
     private FirebaseAuth mAuth;
     private ProgressBar progressBar;
     DatabaseReference databaseReference;
@@ -45,8 +44,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_sign_up);
 
-//        /*hide action bar*/
-//        getSupportActionBar().hide();
+        /*hide title*/
+        getSupportActionBar().hide();
 
         signup = findViewById(R.id.signup);
         signup.setOnClickListener(this);

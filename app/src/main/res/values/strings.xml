@@ -47,20 +47,24 @@
 
     <!-- Strings for On Boarding Screen -->
     <!--Titles-->
-    <string name="first_slide_title">Search Your Location</string>
-    <string name="second_slide_title">Make A Call</string>
-    <string name="third_slide_title">Add Missing Place</string>
-    <string name="fourth_slide_title">Sit Back And Enjoy</string>
+    <string name="first_slide_title">TroVato</string>
+    <string name="second_slide_title">Sign Up</string>
+    <string name="third_slide_title">Sign In</string>
+    <string name="fourth_slide_title">All Set And Enjoy</string>
+    <string name="fifth_slide_title">Rules</string>
 
     <!--Descriptions-->
-    <string name="first_slide_desc">You can search any place nearby or with-in the specified city. We will display specific or all related shops to match your search. </string>
-    <string name="second_slide_desc">We provide almost all the numbers of all departments and shops registered with us. You can perform bookings as well.</string>
-    <string name="third_slide_desc">If you have a shop or somethings and want to be a part of our growing industry then add your place by follwing simple steps.</string>
-    <string name="fourth_slide_desc">We will handle everything for you. As you have the app in your pocket then you dont have to worry about anything.  </string>
+    <string name="first_slide_desc">You have the option to purchase a range of top-notch styles from Envato Elements at discounted rates, including stock videos, video templates, sound effects, graphic designs, slideshows, images, fonts, web designs, CMS templates, WordPress themes, 3D graphics, and more. You are able to enroll in all premium Udemy classes without any cost. You have the option to purchase the components for a reduced cost.</string>
+    <string name="second_slide_desc">First of all you will register our apps, then set your profile to buy any products.Ready to go.</string>
+    <string name="third_slide_desc">If you complete Registration part, then you need to login your account and browse your premium template.</string>
+    <string name="fourth_slide_desc">If you complete to read previous instructions then you will prepare to use it. Thank you.</string>
+    <string name="fifth_slide_desc">If you will try any unethical works in this apps, then we will remove your account and make inactive in our network</string>
 
     <!--Buttons-->
     <string name="skip_btn">Skip</string>
     <string name="next_btn">Next</string>
     <string name="let_get_started">Lets Get Started</string>
+    <string name="home_txt_one">Envato Elements</string>
+    <string name="home_txt_two">Udemy Course</string>
 
 </resources>

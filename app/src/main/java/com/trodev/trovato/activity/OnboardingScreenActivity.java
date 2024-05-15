@@ -29,7 +29,7 @@ public class OnboardingScreenActivity extends AppCompatActivity {
     LinearLayout dotsLayout;
     SliderAdapter sliderAdapter;
     TextView[] dots;
-    Button letsGetStarted, skip_btn;
+    Button letsGetStarted;
     Animation animation;
     int currentPos;
     FirebaseAuth firebaseAuth;
@@ -41,6 +41,9 @@ public class OnboardingScreenActivity extends AppCompatActivity {
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_onboarding_screen);
+
+        /*hide action bar*/
+        getSupportActionBar().hide();
 
         //Hooks
         viewPager = findViewById(R.id.slider);
@@ -68,6 +71,10 @@ public class OnboardingScreenActivity extends AppCompatActivity {
             Toast.makeText(this, "SignIn Successful", Toast.LENGTH_SHORT).show();
             finishAffinity();
         }
+        else
+        {
+            startActivity(new Intent(OnboardingScreenActivity.this, SignInActivity.class));
+        }
     }
 
     public void next(View view) {
@@ -76,7 +83,7 @@ public class OnboardingScreenActivity extends AppCompatActivity {
 
     private void addDots(int position) {
 
-        dots = new TextView[4];
+        dots = new TextView[5];
         dotsLayout.removeAllViews();
 
         for (int i = 0; i < dots.length; i++) {
@@ -88,7 +95,7 @@ public class OnboardingScreenActivity extends AppCompatActivity {
         }
 
         if (dots.length > 0) {
-            dots[position].setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+            dots[position].setTextColor(getResources().getColor(R.color.app_color));
         }
 
     }
@@ -109,6 +116,8 @@ public class OnboardingScreenActivity extends AppCompatActivity {
             } else if (position == 1) {
                 letsGetStarted.setVisibility(View.INVISIBLE);
             } else if (position == 2) {
+                letsGetStarted.setVisibility(View.INVISIBLE);
+            }else if (position == 3) {
                 letsGetStarted.setVisibility(View.INVISIBLE);
             } else {
                 animation = AnimationUtils.loadAnimation(OnboardingScreenActivity.this, R.anim.button_animation);
