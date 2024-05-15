@@ -1,6 +1,7 @@
 package com.trodev.trovato.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
+import com.trodev.trovato.EnvatoDetailsActivity;
 import com.trodev.trovato.R;
 import com.trodev.trovato.models.EnvatoModels;
 
@@ -48,27 +50,31 @@ public class EnvatoAdapter extends RecyclerView.Adapter<EnvatoAdapter.MyViewHold
         holder.dateTv.setText(model.getDate());
         holder.productPrice_Tv.setText(model.getPprice());
 
-/*        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(context, FullJobDetailsActivity.class);
+                Intent intent = new Intent(context, EnvatoDetailsActivity.class);
 
-                intent.putExtra("details", model.getPostdetails());
-                intent.putExtra("post", model.getPostname());
-                intent.putExtra("source", model.getSource());
-                intent.putExtra("sdate", model.getStartdate());
-                intent.putExtra("edate", model.getEnddate());
-                intent.putExtra("link", model.getLink());
-                intent.putExtra("image", model.getImage());
-                intent.putExtra("pdfUrl", model.getPdfUrl());
+                intent.putExtra("pname", model.getPname());
+                intent.putExtra("pcode", model.getPcode());
+                intent.putExtra("pdate", model.getDate());
+                intent.putExtra("plicense", model.getPlicense());
+                intent.putExtra("pdes", model.getPdes());
+                intent.putExtra("pfilesize", model.getFileSize_ET());
+                intent.putExtra("pappsup", model.getAppSup_ET());
+                intent.putExtra("ptime", model.getTime());
+                intent.putExtra("pvideo", model.getPvideo());
+                intent.putExtra("pprice", model.getPprice());
+
+                intent.putExtra("pimage", model.getImage());
 
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
                 context.startActivity(intent);
 
             }
-        });*/
+        });
     }
 
     @Override
