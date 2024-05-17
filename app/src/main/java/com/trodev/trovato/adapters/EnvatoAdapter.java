@@ -13,7 +13,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
-import com.trodev.trovato.EnvatoDetailsActivity;
+import com.trodev.trovato.activity.EnvatoDetailsActivity;
 import com.trodev.trovato.R;
 import com.trodev.trovato.models.EnvatoModels;
 

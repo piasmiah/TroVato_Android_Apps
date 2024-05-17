@@ -5,7 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EnvatoDetailsActivity">
+    android:scrollbars="none"
+    tools:context=".activity.EnvatoDetailsActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,6 +36,7 @@
                 android:layout_marginBottom="5dp"
                 android:orientation="vertical">
 
+                <!--product name-->
                 <TextView
                     android:id="@+id/pname_TV"
                     android:layout_width="match_parent"
@@ -45,7 +47,7 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <!--post name-->
+                <!--product code-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -73,7 +75,7 @@
 
                 </LinearLayout>
 
-                <!--source tv-->
+                <!--product price-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -101,7 +103,7 @@
 
                 </LinearLayout>
 
-                <!--time tv-->
+                <!--product uploading date-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -129,43 +131,44 @@
                             android:layout_marginLeft="5dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/poppins_regular"
-                            android:text="০১/০১/২০২৩"
+                            android:text="01/05/2024"
                             android:textColor="@color/black"
                             android:textSize="13sp"
                             android:textStyle="bold" />
 
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/poppins_regular"
-                            android:text="Uploaded time: "
-                            android:textColor="@color/black"
-                            android:textSize="13sp" />
-
-                        <TextView
-                            android:id="@+id/pTime_TV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/poppins_regular"
-                            android:text="০১/০১/২০২৩"
-                            android:textColor="@color/black"
-                            android:textSize="13sp"
-                            android:textStyle="bold" />
                     </LinearLayout>
 
                 </LinearLayout>
 
-                <!--source tv-->
+                <!--product uploading time-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="Uploaded time: "
+                        android:textColor="@color/black"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/pTime_TV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="12:00 AM"
+                        android:textColor="@color/black"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!--license-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -194,6 +197,7 @@
 
                 </LinearLayout>
 
+                <!--support device-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -222,6 +226,7 @@
 
                 </LinearLayout>
 
+                <!--products file size-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -250,6 +255,7 @@
 
                 </LinearLayout>
 
+                <!--live link button-->
                 <LinearLayout
                     android:id="@+id/plive_ll"
                     android:layout_width="match_parent"
@@ -280,6 +286,7 @@
 
         </androidx.cardview.widget.CardView>
 
+        <!--showing image-->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -305,6 +312,7 @@
 
         </androidx.cardview.widget.CardView>
 
+        <!--product description-->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

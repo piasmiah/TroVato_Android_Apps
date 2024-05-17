@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:scrollbars="none"
     tools:context=".fragments.HomeFragment">
 
     <LinearLayout
@@ -428,6 +429,7 @@
                 android:orientation="vertical"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
+                android:layout_marginBottom="25dp"
                 >
 
                 <androidx.cardview.widget.CardView

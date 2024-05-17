@@ -41,5 +41,12 @@
         <item name="cornerSize">50%</item>
     </style>
 
+    <style name="ShapeAppearanceOverlay.CardView" parent="">
+        <item name="cornerFamilyBottomLeft">rounded</item>
+        <item name="cornerFamilyBottomRight">rounded</item>
+        <item name="cornerSizeTopLeft">8%</item>
+        <item name="cornerSizeTopRight">8%</item>
+    </style>
+
     <style name="Theme.TroVato" parent="Base.Theme.TroVato" />
 </resources>

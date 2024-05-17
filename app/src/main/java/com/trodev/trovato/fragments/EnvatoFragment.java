@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -55,8 +56,15 @@ public class EnvatoFragment extends Fragment {
         reference = FirebaseDatabase.getInstance().getReference().child("envato_elements");
 
         adapter = new EnvatoAdapter(model, getContext());
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(linearLayoutManager);
+
+        /*linear layout manager*/
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
+
+        /*gridview layout manager*/
+/*       GridLayoutManager layoutManager=new GridLayoutManager(getContext(),2);
+         recyclerView.setLayoutManager(layoutManager);*/
+
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setAdapter(adapter);
 

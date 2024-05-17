@@ -1,4 +1,4 @@
-package com.trodev.trovato;
+package com.trodev.trovato.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -17,12 +17,10 @@ import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
+import com.trodev.trovato.R;
 
 public class EnvatoDetailsActivity extends AppCompatActivity {
 
@@ -40,10 +38,8 @@ public class EnvatoDetailsActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_envato_details);
 
-
         /*action bar title*/
         getSupportActionBar().setTitle("Products Details");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // get data from adapter
         pname = getIntent().getStringExtra("pname");
@@ -84,17 +80,15 @@ public class EnvatoDetailsActivity extends AppCompatActivity {
 
         pay_btn = findViewById(R.id.pay_btn);
 
-        pay_btn.setText("Pay "+ pprice );
+        pay_btn.setText("Checkout Now "+ pprice );
 
         /*set on click listener*/
         plive_ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Intent intent = new Intent(EnvatoDetailsActivity.this, ShowPDFActivity.class);
-                // intent.putExtra("pdfUrl", pdfUrl);
-                // startActivity(intent);
-
-                // startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(""+plive_ll)));
+                Intent myWebLink = new Intent(android.content.Intent.ACTION_VIEW);
+                myWebLink.setData(Uri.parse(pvideo));
+                startActivity(myWebLink);
             }
         });
 
@@ -108,6 +102,23 @@ public class EnvatoDetailsActivity extends AppCompatActivity {
         sup_TV.setText(pappsup);
         pdes_TV.setText(pdes);
         filesize_TV.setText(pfilesize);
+
+        pay_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(EnvatoDetailsActivity.this, CheckOutActivity.class);
+
+                intent.putExtra("pname", pname);
+                intent.putExtra("plicense", plicense);
+                intent.putExtra("pprice", pprice);
+                intent.putExtra("pcode", pcode);
+
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                startActivity(intent);
+            }
+        });
 
 
         simulateDataLoading();

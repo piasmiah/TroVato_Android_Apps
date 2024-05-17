@@ -24,7 +24,7 @@ public class SliderAdapter extends PagerAdapter {
 
     int images[]
             = {
-            R.drawable.trovato,
+            R.drawable.bg_logo,
             R.drawable.rules_image,
             R.drawable.sign_up_image,
             R.drawable.sign_in_image,
