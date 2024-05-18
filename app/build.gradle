@@ -89,4 +89,9 @@ dependencies {
 
     // google sign in library
     implementation 'com.google.android.gms:play-services-auth:20.7.0'
+
+    // Uddokta Pay SDK
+    implementation 'com.github.uddoktapay:UddoktaPayAndroidSDK:ultra.2.0'
+    implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.2'
+
 }

@@ -68,4 +68,6 @@
     <string name="home_txt_two">Udemy Course</string>
     <string name="customer_checkout_sms">5-10 minutes after you complete the payment of your product Dowload link will be sent to your registered email or SMS on mobile.</string>
 
+    <string name="notice"><b>টাকা পাঠানোর পরে করনীয়ঃ-</b>\n১। টাকা পাঠানোর পরে Complete Transaction বাটন ক্লিক করে নিশ্চিত করুন আপনার বিল প্রদান সম্পুর্ণ হয়েছ।
+        \n২। যদি আপনি বাটনে ক্লিক না করেন তাহলে আপনার কোন প্রমান স্বরূপ কোন বিল থাকবে নাহ। </string>
 </resources>
