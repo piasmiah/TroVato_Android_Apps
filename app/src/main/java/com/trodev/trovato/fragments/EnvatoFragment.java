@@ -33,11 +33,9 @@ public class EnvatoFragment extends Fragment {
     FirebaseDatabase database;
     DatabaseReference reference;
 
-
     public EnvatoFragment() {
         // Required empty public constructor
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

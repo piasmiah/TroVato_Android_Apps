@@ -6,50 +6,99 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".PaymentActivity">
+    tools:context=".activity.PaymentActivity">
 
     <LinearLayout
         android:id="@+id/uiLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp"
-        android:gravity="center"
         android:orientation="vertical">
 
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        app:cardCornerRadius="5dp"
-        app:cardElevation="5dp">
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="5dp">
 
-        <TextView
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/back_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/back_btn"
+                app:tint="@color/app_color"
+                />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="চলুন পিছনে যাই"
+                    android:fontFamily="@font/kalpurush"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="15dp"
+                    />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:fontFamily="@font/kalpurush"
-            android:text="@string/notice"
-            android:textColor="@color/color_6"
-            android:textSize="15sp"
-            />
+            app:cardCornerRadius="5dp"
+            app:cardElevation="5dp">
 
-    </com.google.android.material.card.MaterialCardView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:fontFamily="@font/kalpurush"
+                android:text="@string/notice"
+                android:textColor="@color/color_6"
+                android:textSize="15sp" />
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="5dp">
+
+            <ImageView
+                android:id="@+id/status_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/payment" />
+
+        </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/webLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:id="@+id/webLayout"
-        android:visibility="gone"
-        >
+        android:visibility="gone">
 
         <WebView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:id="@+id/payWebView"
-            />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 

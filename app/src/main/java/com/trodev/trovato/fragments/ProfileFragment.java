@@ -26,12 +26,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+import com.trodev.trovato.BillingHistoryActivity;
 import com.trodev.trovato.R;
 import com.trodev.trovato.activity.SignInActivity;
 import com.trodev.trovato.models.UserStatus;
 
 public class ProfileFragment extends Fragment {
-    LinearLayout btn_logout, btn_cngpassword;
+    LinearLayout btn_logout, btn_cngpassword, cart_btn;
     ImageView avatarTv, coverTv;
     TextView nameTv, emailTv, user_status, numberTv;
     FloatingActionButton fab;
@@ -67,6 +68,16 @@ public class ProfileFragment extends Fragment {
         numberTv= view.findViewById(R.id.numberTv);
         progress_circular= view.findViewById(R.id.progress_circular);
         user_status = view.findViewById(R.id.user_status);
+
+        /*linear layout*/
+        cart_btn = view.findViewById(R.id.cart_btn);
+
+        cart_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), BillingHistoryActivity.class));
+            }
+        });
 
         progress_circular.setVisibility(View.VISIBLE);
 

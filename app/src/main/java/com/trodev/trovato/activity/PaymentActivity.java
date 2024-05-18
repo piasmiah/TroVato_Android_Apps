@@ -1,22 +1,19 @@
-package com.trodev.trovato;
+package com.trodev.trovato.activity;
 
 import android.app.DownloadManager;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.DownloadListener;
 import android.webkit.URLUtil;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.AutoCompleteTextView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +33,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.help5g.uddoktapaysdk.UddoktaPay;
+import com.trodev.trovato.BillModels;
+import com.trodev.trovato.R;
 import com.trodev.trovato.models.User;
 
 import java.text.SimpleDateFormat;
@@ -86,17 +85,29 @@ public class PaymentActivity extends AppCompatActivity {
     String name, number, user_token, price;
     DatabaseReference databaseReference;
     MaterialButton payBtn;
-
     String u_name, u_email, u_mobile;
+    ImageView back_btn, status_img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_payment);
+
+        getSupportActionBar().hide();
+
         /*init views*/
         webview = findViewById(R.id.payWebView);
         payBtn = findViewById(R.id.payBtn);
+        back_btn = findViewById(R.id.back_btn);
+        status_img = findViewById(R.id.status_img);
+
+        back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         // ###########################################################
         // WebSite Address Here
@@ -340,6 +351,7 @@ public class PaymentActivity extends AppCompatActivity {
                 BillModels billModels = new BillModels(key, u_name, u_email, u_email, price, date, time, year, currentTimeStamp,  FirebaseAuth.getInstance().getCurrentUser().getUid());
                 databaseReference.child(key).setValue(billModels);
                 Toast.makeText(this, "Successful", Toast.LENGTH_SHORT).show();
+                status_img.setImageResource(R.drawable.successfull_img);
 
             } else {
                 Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show();

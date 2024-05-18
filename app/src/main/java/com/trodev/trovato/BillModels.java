@@ -2,8 +2,6 @@ package com.trodev.trovato;
 
 public class BillModels {
 
-    //String aid, name, user_id, packages, mobile, month, price,  date, time, year, bill_no,  uid;
-
     String aid, name, mobile, email, price,  date, time, year, bill_no,  uid;
 
     public BillModels() {
