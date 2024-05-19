@@ -94,4 +94,19 @@ dependencies {
     implementation 'com.github.uddoktapay:UddoktaPayAndroidSDK:ultra.2.0'
     implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.2'
 
+    /*barcode*/
+    implementation 'com.google.zxing:core:3.3.3'
+    implementation('com.journeyapps:zxing-android-embedded:4.3.0') { transitive = false }
+    implementation 'me.dm7.barcodescanner:zxing:1.9.13'
+
+
+    /*qr code dependency*/
+    implementation 'androidmads.library.qrgenearator:QRGenearator:1.0.3'
+
+    //ml library dependency
+    implementation 'com.google.mlkit:barcode-scanning:17.2.0'
+
+    //ml library dependency
+    implementation 'com.google.mlkit:barcode-scanning:17.2.0'
+
 }

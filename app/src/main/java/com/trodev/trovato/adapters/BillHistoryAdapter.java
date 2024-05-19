@@ -1,6 +1,7 @@
 package com.trodev.trovato.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.trodev.trovato.activity.InvoiceActivity;
 import com.trodev.trovato.models.BillModels;
 import com.trodev.trovato.R;
 
@@ -42,6 +44,27 @@ public class BillHistoryAdapter extends RecyclerView.Adapter<BillHistoryAdapter.
         holder.transaction_id.setText(model.getTransactionId());
         holder.date.setText(model.getPayment_date());
         holder.product_code.setText(model.getProduct_code());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, InvoiceActivity.class);
+
+                intent.putExtra("invoice", model.getPayment_bill_no());
+                intent.putExtra("transaction", model.getTransactionId());
+                intent.putExtra("date", model.getPayment_date());
+                intent.putExtra("pcode", model.getProduct_code());
+                intent.putExtra("price", model.getProduct_price());
+
+                intent.putExtra("email", model.getUser_email());
+                intent.putExtra("name", model.getUser_name());
+                intent.putExtra("number", model.getUser_mobile());
+
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                context.startActivity(intent);
+            }
+        });
 
     }
 
