@@ -9,6 +9,7 @@ import android.os.Environment;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.Manifest;
@@ -57,6 +58,7 @@ public class InvoiceActivity extends AppCompatActivity {
     final static int REQUEST_CODE = 1232;
     MaterialCardView infoLl;
     MaterialButton download_btn;
+    ImageView back_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +67,16 @@ public class InvoiceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_invoice);
 
         getSupportActionBar().hide();
+
+        back_btn = findViewById(R.id.back_btn);
+
+        /*set on click*/
+        back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         /*init cardview*/
         infoLl = findViewById(R.id.infoLl);
