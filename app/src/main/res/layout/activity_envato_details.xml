@@ -70,8 +70,7 @@
                         android:fontFamily="@font/poppins_regular"
                         android:text="adobe_090"
                         android:textColor="@color/black"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
+                        android:textSize="15sp" />
 
                 </LinearLayout>
 
@@ -79,7 +78,6 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -88,15 +86,27 @@
                         android:fontFamily="@font/poppins_regular"
                         android:text="Product price: "
                         android:textColor="@color/black"
-                        android:textSize="14sp" />
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/pprice_TV"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="1000"
+                        android:textColor="@color/app_color"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="5dp"
                         android:fontFamily="@font/kalpurush"
-                        android:text="১০০ টাকা"
+                        android:text=" টাকা"
                         android:textColor="@color/app_color"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -191,7 +201,7 @@
                         android:clickable="true"
                         android:fontFamily="@font/poppins_regular"
                         android:text="Avilable"
-                        android:textColor="@color/black"
+                        android:textColor="@color/app_color"
                         android:textSize="12sp"
                         android:textStyle="bold" />
 
@@ -352,7 +362,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:fontFamily="@font/kalpurush"
+            android:fontFamily="@font/poppins_semibold"
             android:text="Pay now"
             android:textAllCaps="false"
             android:textStyle="bold" />

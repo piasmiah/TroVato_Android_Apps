@@ -140,10 +140,18 @@
                                 android:textColor="@color/app_color"
                                 android:textStyle="bold" />
 
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:orientation="horizontal">
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="15dp"
                                 android:fontFamily="@font/poppins_regular"
                                 android:text="Mobile: "
                                 android:textAllCaps="false"
@@ -243,11 +251,20 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.2"
-                                android:fontFamily="@font/kalpurush"
-                                android:text="১০০"
+                                android:fontFamily="@font/poppins_semibold"
+                                android:text="1000"
                                 android:textAllCaps="false"
                                 android:textColor="@color/app_color"
+                                />
 
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.2"
+                                android:fontFamily="@font/kalpurush"
+                                android:text=" টাকা"
+                                android:textAllCaps="false"
+                                android:textColor="@color/app_color"
                                 />
 
                         </LinearLayout>
@@ -283,11 +300,20 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.2"
-                                android:fontFamily="@font/kalpurush"
-                                android:text="১00"
+                                android:fontFamily="@font/poppins_semibold"
+                                android:text="1000"
                                 android:textAllCaps="false"
                                 android:textColor="@color/app_color"
+                                />
 
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.2"
+                                android:fontFamily="@font/kalpurush"
+                                android:text=" টাকা"
+                                android:textAllCaps="false"
+                                android:textColor="@color/app_color"
                                 />
 
                         </LinearLayout>
@@ -325,7 +351,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_margin="10dp"
+                android:layout_margin="15dp"
                 android:fontFamily="@font/poppins_regular"
                 android:text="Pay Now"
                 android:textAllCaps="false"

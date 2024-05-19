@@ -12,30 +12,25 @@ import android.webkit.DownloadListener;
 import android.webkit.URLUtil;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.Manifest;
+
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.help5g.uddoktapaysdk.UddoktaPay;
-import com.trodev.trovato.BillModels;
+import com.trodev.trovato.models.BillModels;
 import com.trodev.trovato.R;
-import com.trodev.trovato.models.User;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -44,11 +39,11 @@ import java.util.Map;
 
 public class PaymentActivity extends AppCompatActivity {
 
-    private static final String API_KEY = "4be324433504126ddd49662efcf7f111740895b6";
+    private static final String API_KEY = "5078f2cffe40017a8e7648b5ec98c763035f44b8";
     private static final String CHECKOUT_URL = "https://payment.trodev.com/api/checkout-v2";
     private static final String VERIFY_PAYMENT_URL = "https://payment.trodev.com/api/verify-payment";
     private static final String REDIRECT_URL = "https://www.trodev.com";
-    private static final String CANCEL_URL = "https://www.trodev.com";
+    private static final String CANCEL_URL = "https://www.trodev.com/error";
 
     // Instance variables to store payment information
     private String storedFullName;
@@ -70,23 +65,19 @@ public class PaymentActivity extends AppCompatActivity {
 
     private String storedMetaKey3;
     private String storedMetaValue3;
-    TextInputEditText nameEt, emailEt, amountEt, user_token_Et, packagesET, mobileEt;
     LinearLayout webLayout, uiLayout;
     WebView payWebView;
     TextView resultTv;
     DatabaseReference reference;
     private FirebaseUser user;
     private String userID;
-    BillModels userProfile;
-    AutoCompleteTextView autoCompleteTextView;
-    String b_name, b_email, b_price, b_mobile, b_month, b_packages, b_user_id;
+
     String biller_id;
     WebView webview;
-    String name, number, user_token, price;
     DatabaseReference databaseReference;
     MaterialButton payBtn;
-    String u_name, u_email, u_mobile;
     ImageView back_btn, status_img;
+    String user_name, user_mobile, user_price, user_pcode, user_email, user_bill_no;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +85,7 @@ public class PaymentActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_payment);
 
+        /*support action bar hide*/
         getSupportActionBar().hide();
 
         /*init views*/
@@ -128,35 +120,6 @@ public class PaymentActivity extends AppCompatActivity {
         long timestamps = System.currentTimeMillis() / 1000;
         biller_id = String.valueOf(timestamps);
 
-
-        /*####################################################################################################################################*/
-        /*####################################################################################################################################*/
-        /*get admin info from admin user database*/
-        /*database location and get user uid*/
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        reference = FirebaseDatabase.getInstance().getReference("Users");
-        userID = user.getUid();
-
-        /*show user profile data*/
-        reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                User userProfile = snapshot.getValue(User.class);
-
-                if (userProfile != null) {
-
-                     u_name = userProfile.uname;
-                     u_email = userProfile.email;
-                     u_mobile = userProfile.num;
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(PaymentActivity.this, "something went wrong!", Toast.LENGTH_SHORT).show();
-            }
-        });
 
         WebSettings mywebsetting = webview.getSettings();
 
@@ -193,12 +156,22 @@ public class PaymentActivity extends AppCompatActivity {
             }
         });
 
-        uiLayout.setVisibility(View.VISIBLE);
+        /*get data from CheckoutActivity*/
+        /*this is the main data getting section*/
+        user_name = getIntent().getStringExtra("c_name");
+        user_mobile = getIntent().getStringExtra("c_mobile");
+        user_price = getIntent().getStringExtra("c_price");
+        user_pcode = getIntent().getStringExtra("c_pcode");
+        user_email = getIntent().getStringExtra("c_email");
 
-        bill_payment();
+        /*bill no*/
+        long timeStamp = System.currentTimeMillis() / 1000;
+        user_bill_no = Long.toString(timeStamp);
+
+        //bill_payment();
 
         /*payment gateway task opening*/
-        // go_to_payment();
+        go_to_payment();
 
     }
 
@@ -206,10 +179,6 @@ public class PaymentActivity extends AppCompatActivity {
 
         uiLayout.setVisibility(View.GONE);
         webLayout.setVisibility(View.VISIBLE);
-
-        String fullname = nameEt.getText().toString().trim();
-        String email = emailEt.getText().toString().trim();
-        String amount = amountEt.getText().toString().trim();
 
         // Set your metadata values in the map
         Map<String, String> metadataMap = new HashMap<>();
@@ -225,9 +194,9 @@ public class PaymentActivity extends AppCompatActivity {
 
                 // Callback method triggered when the payment status is received from the payment gateway.
                 // It provides information about the payment transaction.
-                storedFullName = nameEt.getText().toString().trim();
-                storedEmail = emailEt.getText().toString().trim();
-                storedAmount = amountEt.getText().toString().trim();
+                storedFullName = fullName;
+                storedEmail = email;
+                storedAmount = amount;
                 storedInvoiceId = invoiceId;
                 storedPaymentMethod = paymentMethod;
                 storedSenderNumber = senderNumber;
@@ -267,26 +236,20 @@ public class PaymentActivity extends AppCompatActivity {
                         // Update UI based on payment status
                         if ("COMPLETED".equals(status)) {
                             // Handle payment completed case
-                            // uiLayout.setVisibility(View.VISIBLE);
-                            // webLayout.setVisibility(View.GONE);
-                            resultTv.setText("Payment Complete" + "\n" + "Name:  " + storedFullName + "\n" + "Amount: " + storedAmount);
-
+                            uiLayout.setVisibility(View.VISIBLE);
+                            webLayout.setVisibility(View.GONE);
+                            /*save user data our*/
+                            bill_payment();
 
                         } else if ("PENDING".equals(status)) {
                             // Handle payment pending case
-                            // Handle payment completed case
                             uiLayout.setVisibility(View.VISIBLE);
                             webLayout.setVisibility(View.GONE);
-                            resultTv.setText("Payment Pending" + "\n" + "Name:  " + storedFullName + "\n" + "Amount: " + storedAmount);
-                            payment_pending();
 
                         } else if ("ERROR".equals(status)) {
                             // Handle payment error case
-                            // Handle payment completed case
                             uiLayout.setVisibility(View.VISIBLE);
                             webLayout.setVisibility(View.GONE);
-                            resultTv.setText("Payment Error" + "\n" + "Name:  " + storedFullName + "\n" + "Amount: " + storedAmount);
-                            error_sms();
                         }
                     }
                 });
@@ -294,18 +257,9 @@ public class PaymentActivity extends AppCompatActivity {
         };
 
         UddoktaPay uddoktapay = new UddoktaPay(payWebView, paymentCallback);
-        uddoktapay.loadPaymentForm(API_KEY, fullname, email, amount, CHECKOUT_URL, VERIFY_PAYMENT_URL, REDIRECT_URL, CANCEL_URL, metadataMap);
+        uddoktapay.loadPaymentForm(API_KEY, user_name, user_email, user_price, CHECKOUT_URL, VERIFY_PAYMENT_URL, REDIRECT_URL, CANCEL_URL, metadataMap);
 
     }
-
-    private void payment_pending(){
-        Toast.makeText(this, "Payment loading", Toast.LENGTH_SHORT).show();
-    }
-
-    private void error_sms(){
-        Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show();
-    }
-
 
     private void bill_payment() {
 
@@ -316,16 +270,9 @@ public class PaymentActivity extends AppCompatActivity {
                 .getInstance()
                 .getReference("user_payment");
 
-        name = getIntent().getStringExtra("name");
-        number = getIntent().getStringExtra("number");
-        // user_token = getIntent().getStringExtra("uid");
-        price = getIntent().getStringExtra("u_price");
+        if (user_price.isEmpty()) {
 
-
-        // if (user_token.isEmpty()) {
-
-        // } else {
-
+        } else {
 
             Calendar calForDate = Calendar.getInstance();
             SimpleDateFormat currentDate = new SimpleDateFormat("dd/MM/yyyy");
@@ -339,25 +286,20 @@ public class PaymentActivity extends AppCompatActivity {
             SimpleDateFormat currentYear = new SimpleDateFormat("yyyy");
             String year = currentYear.format(calForYear.getTime());
 
-            /*bill no*/
-            long timeStamp = System.currentTimeMillis()/1000;
-            String currentTimeStamp = Long.toString(timeStamp);
-
             String key = databaseReference.push().getKey();
-
 
             if (key != null) {
                 /*set data on user_status*/
-                BillModels billModels = new BillModels(key, u_name, u_email, u_email, price, date, time, year, currentTimeStamp,  FirebaseAuth.getInstance().getCurrentUser().getUid());
+                BillModels billModels = new BillModels(key, user_name, user_mobile, user_email, user_price, date, time, year, biller_id, user_pcode, storedTransactionId, FirebaseAuth.getInstance().getCurrentUser().getUid());
                 databaseReference.child(key).setValue(billModels);
-                Toast.makeText(this, "Successful", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Invoice Saved Successful", Toast.LENGTH_SHORT).show();
                 status_img.setImageResource(R.drawable.successfull_img);
 
             } else {
                 Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show();
             }
 
-        // }
+        }
 
     }
 

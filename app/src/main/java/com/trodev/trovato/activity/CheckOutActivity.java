@@ -26,10 +26,9 @@ import com.trodev.trovato.R;
 public class CheckOutActivity extends AppCompatActivity {
 
     TextView productCode_TV, license_TV, customername_TV,mobile_TV, productname_TV, price_TV, total_price_TV, email_TV ;
-    String pcode, license, customername, mobile, productname, price, total_price;
+    String pcode, license, productname, price;
     ImageView back_btn;
     MaterialButton payment_btn;
-
     DatabaseReference databaseReference;
     FirebaseAuth firebaseAuth;
     FirebaseUser user;
@@ -40,6 +39,8 @@ public class CheckOutActivity extends AppCompatActivity {
     DatabaseReference reference, ref;
     String userID;
 
+    String username, usermobile, useremail;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +50,13 @@ public class CheckOutActivity extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
+        /*database initialize*/
         firebaseAuth= FirebaseAuth.getInstance();
         user= firebaseAuth.getCurrentUser();
         firebaseDatabase= FirebaseDatabase.getInstance();
         databaseReference= firebaseDatabase.getReference("Registered_User");
 
+        /*init views*/
         productCode_TV = findViewById(R.id.productCode_TV);
         license_TV = findViewById(R.id.license_TV);
         customername_TV = findViewById(R.id.customername_TV);
@@ -65,32 +68,24 @@ public class CheckOutActivity extends AppCompatActivity {
         back_btn = findViewById(R.id.back_btn);
         payment_btn = findViewById(R.id.payment_btn);
 
-
+        /*get data*/
         pcode = getIntent().getStringExtra("pcode");
         license = getIntent().getStringExtra("plicense");
         productname = getIntent().getStringExtra("pname");
         price = getIntent().getStringExtra("pprice");
 
+        /*set data on views*/
         productCode_TV.setText(pcode);
         license_TV.setText(license);
         productname_TV.setText(productname);
         price_TV.setText(price);
+        total_price_TV.setText(price);
 
         /*how to back previous activity*/
         back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
-            }
-        });
-
-        payment_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(CheckOutActivity.this, PaymentActivity.class);
-                intent.putExtra("u_price", price);
-                startActivity(intent);
-                Toast.makeText(CheckOutActivity.this, "Processing...", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -102,16 +97,15 @@ public class CheckOutActivity extends AppCompatActivity {
                 //check until required data get
                 for (DataSnapshot ds : snapshot.getChildren()){
                     //get data from database
-                    String username = "Name: "+ ds.child("uname").getValue();
-                    String email = "Email: "+ ds.child("email").getValue();
-                    String number = "Mobile number: "+ ds.child("num").getValue();
-                    String image = ""+ ds.child("image").getValue();
+                    username = ""+ ds.child("uname").getValue();
+                    useremail = ""+ ds.child("email").getValue();
+                    usermobile = ""+ ds.child("num").getValue();
 
-                    /*String cover = ""+ ds.child("cover").getValue();*/
 
                     //set data on views
                     customername_TV.setText(username);
-                    email_TV.setText(email);
+                    email_TV.setText(useremail);
+                    mobile_TV.setText(usermobile);
 
 //                    try {
 //                        Picasso.get().load(image).into(avatarTv);
@@ -134,6 +128,22 @@ public class CheckOutActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+
+
+        /*payment button*/
+        payment_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CheckOutActivity.this, PaymentActivity.class);
+                intent.putExtra("c_price", price);
+                intent.putExtra("c_name", username);
+                intent.putExtra("c_mobile", usermobile);
+                intent.putExtra("c_pcode", pcode);
+                intent.putExtra("c_email", useremail);
+                startActivity(intent);
+                Toast.makeText(CheckOutActivity.this, "Processing...", Toast.LENGTH_LONG).show();
             }
         });
 

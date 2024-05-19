@@ -38,8 +38,10 @@ public class EnvatoDetailsActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_envato_details);
 
+
         /*action bar title*/
         getSupportActionBar().setTitle("Products Details");
+
 
         // get data from adapter
         pname = getIntent().getStringExtra("pname");
@@ -80,7 +82,7 @@ public class EnvatoDetailsActivity extends AppCompatActivity {
 
         pay_btn = findViewById(R.id.pay_btn);
 
-        pay_btn.setText("Checkout Now "+ pprice );
+        // pay_btn.setText("Checkout Now "+ pprice );
 
         /*set on click listener*/
         plive_ll.setOnClickListener(new View.OnClickListener() {

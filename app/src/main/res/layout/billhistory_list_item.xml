@@ -5,27 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    app:cardCornerRadius="5dp"
+    app:cardCornerRadius="8dp"
     app:cardElevation="5dp">
+
+    <ImageView
+        android:id="@+id/imageIv"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:adjustViewBounds="true"
+        android:alpha="0.2"
+        android:src="@drawable/invoice_img" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="3">
-
-        <ImageView
-            android:id="@+id/imageIv"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_gravity="center"
-            android:layout_margin="5dp"
-            android:src="@drawable/bg_image_001" />
-
-        <View
-            android:layout_width="2dp"
-            android:layout_height="match_parent"
-            android:background="@color/app_color" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -40,23 +37,23 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <!--            <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="5dp"
-                                    android:fontFamily="@font/kalpurush"
-                                    android:text="আয়াতঃ "
-                                    android:textColor="@color/black"
-                                    android:textSize="18sp"
-                                    android:textStyle="bold" />-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Invoice ID:"
+                    android:textColor="@color/black"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/prductName_TV"
+                    android:id="@+id/invoice_TV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/poppins_regular"
-                    android:text="Product Name/Title"
+                    android:text=" 1716104129"
                     android:textColor="@color/black"
                     android:textSize="15sp"
                     android:textStyle="bold" />
@@ -72,20 +69,18 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
                     android:fontFamily="@font/poppins_regular"
-                    android:text="Product Code: "
+                    android:text="Product name:"
                     android:textColor="@color/black"
                     android:textSize="13sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/productCode_TV"
+                    android:id="@+id/product_name_TV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
                     android:fontFamily="@font/poppins_regular"
-                    android:text="adobe_01"
+                    android:text=" adobe mastering video course"
                     android:textColor="@color/app_color"
                     android:textSize="13sp"
                     android:textStyle="bold" />
@@ -100,30 +95,18 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="@font/kalpurush"
-                    android:text="মূল্যঃ "
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Purchase product code:"
                     android:textColor="@color/black"
                     android:textSize="13sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/productPrice_Tv"
+                    android:id="@+id/productCode_TV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="@font/poppins_semibold"
-                    android:text="1000"
-                    android:textColor="@color/app_color"
-                    android:textSize="13sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="@font/kalpurush"
-                    android:text=" টাকা"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text=" adobe_01"
                     android:textColor="@color/app_color"
                     android:textSize="13sp"
                     android:textStyle="bold" />
@@ -142,18 +125,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_regular"
-                    android:text="Author: "
+                    android:text="Transaction ID: "
                     android:textColor="@color/black"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/sourceTv"
+                    android:id="@+id/transaction_TV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_regular"
-                    android:text="Trodev"
-                    android:textColor="@color/black"
-                    android:textSize="13sp" />
+                    android:text="BEJ2IGTUZY"
+                    android:textColor="@color/app_color"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -169,7 +154,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_regular"
-                    android:text="Uploaded: "
+                    android:text="Payment Date: "
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -179,12 +164,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_regular"
-                    android:text="01/01/2024"
+                    android:text=" 01/01/2024"
                     android:textColor="@color/app_color"
                     android:textSize="12sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:gravity="center"
+                android:text="Tap to view details"
+                android:textColor="@color/app_color"
+                android:textSize="10sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -194,8 +189,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:src="@drawable/skip_icon"
-            app:tint="@color/app_color" />
+            android:src="@drawable/skip_icon" />
 
     </LinearLayout>
 
