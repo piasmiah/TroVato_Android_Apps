@@ -2,12 +2,12 @@ package com.trodev.trovato.models;
 
 public class BillModels {
 
-    String aid, user_name, user_mobile, user_email, product_price, payment_date, payment_time, payment_year, payment_bill_no, product_code, transactionId, uid;
+    String aid, user_name, user_mobile, user_email, product_price, payment_date, payment_time, payment_year, payment_bill_no, product_code, transactionId, product_name, uid;
 
     public BillModels() {
     }
 
-    public BillModels(String aid, String user_name, String user_mobile, String user_email, String product_price, String payment_date, String payment_time, String payment_year, String payment_bill_no, String product_code, String transactionId, String uid) {
+    public BillModels(String aid, String user_name, String user_mobile, String user_email, String product_price, String payment_date, String payment_time, String payment_year, String payment_bill_no, String product_code, String transactionId, String product_name, String uid) {
         this.aid = aid;
         this.user_name = user_name;
         this.user_mobile = user_mobile;
@@ -19,6 +19,7 @@ public class BillModels {
         this.payment_bill_no = payment_bill_no;
         this.product_code = product_code;
         this.transactionId = transactionId;
+        this.product_name = product_name;
         this.uid = uid;
     }
 
@@ -108,6 +109,14 @@ public class BillModels {
 
     public void setTransactionId(String transactionId) {
         this.transactionId = transactionId;
+    }
+
+    public String getProduct_name() {
+        return product_name;
+    }
+
+    public void setProduct_name(String product_name) {
+        this.product_name = product_name;
     }
 
     public String getUid() {

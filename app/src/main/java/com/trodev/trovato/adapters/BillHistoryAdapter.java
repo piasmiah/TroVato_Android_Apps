@@ -44,6 +44,7 @@ public class BillHistoryAdapter extends RecyclerView.Adapter<BillHistoryAdapter.
         holder.transaction_id.setText(model.getTransactionId());
         holder.date.setText(model.getPayment_date());
         holder.product_code.setText(model.getProduct_code());
+        holder.product_name.setText(model.getProduct_name());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +52,7 @@ public class BillHistoryAdapter extends RecyclerView.Adapter<BillHistoryAdapter.
                 Intent intent = new Intent(context, InvoiceActivity.class);
 
                 intent.putExtra("invoice", model.getPayment_bill_no());
+                intent.putExtra("p_name", model.getProduct_name());
                 intent.putExtra("transaction", model.getTransactionId());
                 intent.putExtra("date", model.getPayment_date());
                 intent.putExtra("pcode", model.getProduct_code());

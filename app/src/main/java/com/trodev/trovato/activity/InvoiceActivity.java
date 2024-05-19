@@ -53,8 +53,8 @@ import java.io.IOException;
 
 public class InvoiceActivity extends AppCompatActivity {
 
-    TextView invoice_tv, date_tv, customer_name_tv, customer_email_tv, customer_mobile_tv, transaction_id_tv, product_code_tv, product_price_tv, total_price_tv;
-    String invoice, date, customer_name, customer_email, customer_mobile, transaction, product_code, product_price;
+    TextView invoice_tv, date_tv, customer_name_tv, customer_email_tv, customer_mobile_tv, transaction_id_tv, product_code_tv, product_price_tv, total_price_tv, product_name_tv;
+    String invoice, date, customer_name, customer_email, customer_mobile, transaction, product_code, product_price, product_name;
     final static int REQUEST_CODE = 1232;
     MaterialCardView infoLl;
     MaterialButton download_btn;
@@ -90,8 +90,10 @@ public class InvoiceActivity extends AppCompatActivity {
         customer_mobile_tv = findViewById(R.id.customer_mobile_tv);
         transaction_id_tv = findViewById(R.id.transaction_id_tv);
         product_code_tv = findViewById(R.id.product_code_tv);
+        product_name_tv = findViewById(R.id.product_name_tv);
         product_price_tv = findViewById(R.id.product_price_tv);
         total_price_tv = findViewById(R.id.total_price_tv);
+
 
         /*get data from Bill History Adapter*/
         invoice = getIntent().getStringExtra("invoice");
@@ -102,6 +104,7 @@ public class InvoiceActivity extends AppCompatActivity {
         transaction = getIntent().getStringExtra("transaction");
         product_code = getIntent().getStringExtra("pcode");
         product_price = getIntent().getStringExtra("price");
+        product_name = getIntent().getStringExtra("p_name");
 
 
         /*set data on views*/
@@ -114,6 +117,7 @@ public class InvoiceActivity extends AppCompatActivity {
         product_code_tv.setText(product_code);
         product_price_tv.setText(product_price + " ৳");
         total_price_tv.setText(product_price + " ৳");
+        product_name_tv.setText(product_name);
 
         askPermissions();
 
@@ -182,7 +186,7 @@ public class InvoiceActivity extends AppCompatActivity {
         /*time wise print*/
         /*save pdf file on timestamp wise*/
         long timestamps = System.currentTimeMillis() / 1000;
-        String fileName = "TroVato_"+timestamps + ".pdf";
+        String fileName = "TroVato_" + timestamps + ".pdf";
 
         File filePath = new File(downloadsDir, fileName);
 

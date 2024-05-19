@@ -34,11 +34,6 @@ public class CheckOutActivity extends AppCompatActivity {
     FirebaseUser user;
     FirebaseDatabase firebaseDatabase;
 
-    //StorageReference storageReference;
-    ProgressBar progress_circular;
-    DatabaseReference reference, ref;
-    String userID;
-
     String username, usermobile, useremail;
 
 
@@ -138,6 +133,7 @@ public class CheckOutActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(CheckOutActivity.this, PaymentActivity.class);
                 intent.putExtra("c_price", price);
+                intent.putExtra("c_pname", productname);
                 intent.putExtra("c_name", username);
                 intent.putExtra("c_mobile", usermobile);
                 intent.putExtra("c_pcode", pcode);

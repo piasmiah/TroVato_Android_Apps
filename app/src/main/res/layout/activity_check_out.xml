@@ -242,7 +242,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="2"
                                 android:fontFamily="@font/poppins_regular"
-                                android:text="Product Name"
+                                android:text="Product Price"
                                 android:textAllCaps="false"
                                 android:textColor="@color/black" />
 

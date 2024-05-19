@@ -77,7 +77,7 @@ public class PaymentActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
     MaterialButton payBtn;
     ImageView back_btn, status_img;
-    String user_name, user_mobile, user_price, user_pcode, user_email, user_bill_no;
+    String user_name, user_mobile, user_price, user_pcode, user_email, user_bill_no, product_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -163,6 +163,7 @@ public class PaymentActivity extends AppCompatActivity {
         user_price = getIntent().getStringExtra("c_price");
         user_pcode = getIntent().getStringExtra("c_pcode");
         user_email = getIntent().getStringExtra("c_email");
+        product_name = getIntent().getStringExtra("c_pname");
 
         /*bill no*/
         long timeStamp = System.currentTimeMillis() / 1000;
@@ -290,7 +291,7 @@ public class PaymentActivity extends AppCompatActivity {
 
             if (key != null) {
                 /*set data on user_status*/
-                BillModels billModels = new BillModels(key, user_name, user_mobile, user_email, user_price, date, time, year, biller_id, user_pcode, storedTransactionId, FirebaseAuth.getInstance().getCurrentUser().getUid());
+                BillModels billModels = new BillModels(key, user_name, user_mobile, user_email, user_price, date, time, year, biller_id, user_pcode, storedTransactionId, product_name, FirebaseAuth.getInstance().getCurrentUser().getUid());
                 databaseReference.child(key).setValue(billModels);
                 Toast.makeText(this, "Invoice Saved Successful", Toast.LENGTH_SHORT).show();
                 status_img.setImageResource(R.drawable.successfull_img);
