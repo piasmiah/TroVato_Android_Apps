@@ -37,7 +37,7 @@ import com.trodev.trovato.activity.SignInActivity;
 import com.trodev.trovato.models.UserStatus;
 
 public class ProfileFragment extends Fragment {
-    LinearLayout btn_logout, btn_cngpassword, cart_btn, btn_developer, btn_privacy, btn_rate;
+    LinearLayout btn_logout, btn_cngpassword, cart_btn, btn_developer, btn_privacy, btn_rate, btn_deleteprofile;
     ImageView avatarTv, coverTv;
     TextView nameTv, emailTv, user_status, numberTv;
     FloatingActionButton fab;
@@ -78,11 +78,29 @@ public class ProfileFragment extends Fragment {
         btn_developer = view.findViewById(R.id.btn_developer);
         btn_privacy = view.findViewById(R.id.btn_privacy);
         btn_rate = view.findViewById(R.id.btn_rate);
+        btn_deleteprofile = view.findViewById(R.id.btn_deleteprofile);
 
         cart_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getContext(), BillingHistoryActivity.class));
+            }
+        });
+
+
+        btn_deleteprofile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "Delete request your profile", Toast.LENGTH_SHORT).show();
+                final Dialog dialog = new Dialog(getContext());
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.delete_bottomsheet_layout);
+
+                dialog.show();
+                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+                dialog.getWindow().setGravity(Gravity.BOTTOM);
             }
         });
 
