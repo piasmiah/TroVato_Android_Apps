@@ -9,6 +9,7 @@ import android.os.Environment;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -57,7 +58,7 @@ public class InvoiceActivity extends AppCompatActivity {
     String invoice, date, customer_name, customer_email, customer_mobile, transaction, product_code, product_price, product_name, zip_link, zip_password;
     final static int REQUEST_CODE = 1232;
     MaterialCardView infoLl, link_mc;
-    MaterialButton download_btn;
+    Button download_btn;
     ImageView back_btn;
     String u_transaction;
 

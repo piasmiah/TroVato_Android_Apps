@@ -492,12 +492,24 @@
                             app:tint="@color/app_color" />
 
                         <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="15dp"
+                            android:autoLink="web"
+                            android:textIsSelectable="true"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:text="Zip Link"
+                            android:textColor="@color/black" />
+
+                        <TextView
                             android:id="@+id/buying_link_TV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginStart="15dp"
                             android:autoLink="web"
+                            android:textIsSelectable="true"
                             android:fontFamily="@font/poppins_semibold"
                             android:text="Zip Link"
                             android:textColor="@color/black" />
@@ -518,12 +530,24 @@
                             app:tint="@color/app_color" />
 
                         <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="15dp"
+                            android:autoLink="web"
+                            android:textIsSelectable="true"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:text="Zip password"
+                            android:textColor="@color/black" />
+
+                        <TextView
                             android:id="@+id/zip_pass_TV"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginStart="15dp"
                             android:autoLink="web"
+                            android:textIsSelectable="true"
                             android:fontFamily="@font/poppins_semibold"
                             android:text="Zip password"
                             android:textColor="@color/black" />
@@ -534,17 +558,20 @@
 
             </com.google.android.material.card.MaterialCardView>
 
-            <com.google.android.material.button.MaterialButton
+            <Button
                 android:id="@+id/download_btn"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_height="match_parent"
                 android:fontFamily="@font/poppins_semibold"
+                android:backgroundTint="@color/app_color"
                 android:text="Download PDF"
+                android:textColor="@color/white"
+                android:gravity="center"
                 android:textAllCaps="false" />
 
         </LinearLayout>
+
+
 
     </LinearLayout>
 

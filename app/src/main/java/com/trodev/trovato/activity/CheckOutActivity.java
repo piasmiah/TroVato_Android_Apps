@@ -3,6 +3,7 @@ package com.trodev.trovato.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -28,7 +29,7 @@ public class CheckOutActivity extends AppCompatActivity {
     TextView productCode_TV, license_TV, customername_TV,mobile_TV, productname_TV, price_TV, total_price_TV, email_TV ;
     String pcode, license, productname, price, zip_link, zip_password;
     ImageView back_btn;
-    MaterialButton payment_btn;
+    Button payment_btn;
     DatabaseReference databaseReference;
     FirebaseAuth firebaseAuth;
     FirebaseUser user;

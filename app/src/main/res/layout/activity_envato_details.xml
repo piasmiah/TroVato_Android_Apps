@@ -402,6 +402,8 @@
             android:layout_margin="10dp"
             android:fontFamily="@font/poppins_semibold"
             android:text="Pay now"
+            android:backgroundTint="@color/app_color"
+            android:textColor="@color/white"
             android:textAllCaps="false"
             android:textStyle="bold" />
 

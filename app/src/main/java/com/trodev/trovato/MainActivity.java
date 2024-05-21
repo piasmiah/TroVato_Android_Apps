@@ -9,6 +9,8 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.onesignal.OneSignal;
+import com.onesignal.debug.LogLevel;
 import com.trodev.trovato.fragments.CourseFragment;
 import com.trodev.trovato.fragments.EnvatoFragment;
 import com.trodev.trovato.fragments.HomeFragment;
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     SmoothBottomBar smoothBottomBar;
 
+    private static final String ONESIGNAL_APP_ID = "bd87768b-7af0-4709-b66e-c50baed594b3";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +31,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         /*init views*/
         smoothBottomBar = findViewById(R.id.bottombar);
+
+        // Verbose Logging set to help debug issues, remove before releasing your app.
+        OneSignal.getDebug().setLogLevel(LogLevel.VERBOSE);
+        OneSignal.initWithContext(this, ONESIGNAL_APP_ID);
+        OneSignal.getUser().getPushSubscription().optIn();
 
 
         /*When apps start show HomeFragments*/
