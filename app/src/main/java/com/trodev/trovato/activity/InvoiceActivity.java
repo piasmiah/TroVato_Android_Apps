@@ -53,12 +53,13 @@ import java.io.IOException;
 
 public class InvoiceActivity extends AppCompatActivity {
 
-    TextView invoice_tv, date_tv, customer_name_tv, customer_email_tv, customer_mobile_tv, transaction_id_tv, product_code_tv, product_price_tv, total_price_tv, product_name_tv;
-    String invoice, date, customer_name, customer_email, customer_mobile, transaction, product_code, product_price, product_name;
+    TextView invoice_tv, date_tv, customer_name_tv, customer_email_tv, customer_mobile_tv, transaction_id_tv, product_code_tv, product_price_tv, total_price_tv, product_name_tv, buying_link_TV, zip_pass_TV;
+    String invoice, date, customer_name, customer_email, customer_mobile, transaction, product_code, product_price, product_name, zip_link, zip_password;
     final static int REQUEST_CODE = 1232;
-    MaterialCardView infoLl;
+    MaterialCardView infoLl, link_mc;
     MaterialButton download_btn;
     ImageView back_btn;
+    String u_transaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +81,7 @@ public class InvoiceActivity extends AppCompatActivity {
 
         /*init cardview*/
         infoLl = findViewById(R.id.infoLl);
+        link_mc = findViewById(R.id.link_mc);
         download_btn = findViewById(R.id.download_btn);
 
         /*init views*/
@@ -93,6 +95,8 @@ public class InvoiceActivity extends AppCompatActivity {
         product_name_tv = findViewById(R.id.product_name_tv);
         product_price_tv = findViewById(R.id.product_price_tv);
         total_price_tv = findViewById(R.id.total_price_tv);
+        buying_link_TV = findViewById(R.id.buying_link_TV);
+        zip_pass_TV = findViewById(R.id.zip_pass_TV);
 
 
         /*get data from Bill History Adapter*/
@@ -106,6 +110,11 @@ public class InvoiceActivity extends AppCompatActivity {
         product_price = getIntent().getStringExtra("price");
         product_name = getIntent().getStringExtra("p_name");
 
+        /*zip link and password*/
+        zip_link = getIntent().getStringExtra("zip_link");
+        zip_password = getIntent().getStringExtra("zip_password");
+
+        link_mc.setVisibility(View.INVISIBLE);
 
         /*set data on views*/
         invoice_tv.setText(invoice);
@@ -119,6 +128,13 @@ public class InvoiceActivity extends AppCompatActivity {
         total_price_tv.setText(product_price + " ৳");
         product_name_tv.setText(product_name);
 
+        u_transaction = transaction;
+
+        if (u_transaction == transaction)
+        {
+            show_data();
+        }
+
         askPermissions();
 
         download_btn.setOnClickListener(new View.OnClickListener() {
@@ -127,6 +143,12 @@ public class InvoiceActivity extends AppCompatActivity {
                 make_pdf();
             }
         });
+    }
+
+    private void show_data() {
+        link_mc.setVisibility(View.VISIBLE);
+        buying_link_TV.setText(zip_link);
+        zip_pass_TV.setText(zip_password);
     }
 
     private void askPermissions() {

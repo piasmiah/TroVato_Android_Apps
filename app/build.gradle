@@ -109,4 +109,7 @@ dependencies {
     //ml library dependency
     implementation 'com.google.mlkit:barcode-scanning:17.2.0'
 
+    /*send email*/
+    implementation 'com.github.1902shubh:SendMail:1.0.0'
+
 }

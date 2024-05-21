@@ -26,7 +26,7 @@ import com.trodev.trovato.R;
 public class CheckOutActivity extends AppCompatActivity {
 
     TextView productCode_TV, license_TV, customername_TV,mobile_TV, productname_TV, price_TV, total_price_TV, email_TV ;
-    String pcode, license, productname, price;
+    String pcode, license, productname, price, zip_link, zip_password;
     ImageView back_btn;
     MaterialButton payment_btn;
     DatabaseReference databaseReference;
@@ -68,6 +68,10 @@ public class CheckOutActivity extends AppCompatActivity {
         license = getIntent().getStringExtra("plicense");
         productname = getIntent().getStringExtra("pname");
         price = getIntent().getStringExtra("pprice");
+
+        /*zip link and pass*/
+        zip_link = getIntent().getStringExtra("zip_link");
+        zip_password = getIntent().getStringExtra("zip_password");
 
         /*set data on views*/
         productCode_TV.setText(pcode);
@@ -138,6 +142,11 @@ public class CheckOutActivity extends AppCompatActivity {
                 intent.putExtra("c_mobile", usermobile);
                 intent.putExtra("c_pcode", pcode);
                 intent.putExtra("c_email", useremail);
+
+                /*product zip and password send on checkout activity*/
+                intent.putExtra("zip_link", zip_link);
+                intent.putExtra("zip_password", zip_password);
+
                 startActivity(intent);
                 Toast.makeText(CheckOutActivity.this, "Processing...", Toast.LENGTH_LONG).show();
             }

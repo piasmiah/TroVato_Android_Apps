@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@drawable/dialog_background"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:justificationMode="inter_word"
+                android:text="Envato Elements"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:justificationMode="inter_word"
+                android:text="Millions of people around the world visit Envato to buy and sell creative assets, use smart design templates, or learn creative skills. With an industry-leading marketplace paired with an unlimited subscription service, Envato helps creatives like you get projects done faster."
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:justificationMode="inter_word"
+                android:text="\nTrovato"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:justificationMode="inter_word"
+                android:text="@string/trovato_company"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:justificationMode="inter_word"
+                android:text="\nWhat TroVato offers you"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:justificationMode="inter_word"
+                android:text="TroVato offers all material of envato element for resonable price, such as Stock video, video templates, Music, Sound effects, Graphics Templates, Graphics, Presentation Templates, Photos, Fonts, Add-ons, Web Templates, CMS Templates, Wordpress, 3D, After Effects Templates, Adobe Premere pro templates."
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:justificationMode="inter_word"
+                android:text="\nPayment System"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:justificationMode="inter_word"
+                android:text="We accept bKash, Nagad, Cellfin. In future we will setup many payment mathod."
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

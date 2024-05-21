@@ -26,11 +26,12 @@ public class EnvatoDetailsActivity extends AppCompatActivity {
 
     private TextView pname_TV, pcode_TV, pprice_TV, pdate_TV,pTime_TV, plicense_TV, sup_TV, pdes_TV, filesize_TV;
     ImageView imageView;
-    String pname, pcode, pdate, plicense, pdes, pfilesize, pappsup, ptime, pvideo, pprice, pimage;
+    String pname, pcode, pdate, plicense, pdes, pfilesize, pappsup, ptime, pvideo, pprice, p_zip_link, p_zip_password, pimage;
     LinearLayout plive_ll;
     ProgressBar progressBar;
     CardView imageCard;
     Button pay_btn;
+    ImageView back_btn, status_img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +41,8 @@ public class EnvatoDetailsActivity extends AppCompatActivity {
 
 
         /*action bar title*/
-        getSupportActionBar().setTitle("Products Details");
-
+        // getSupportActionBar().setTitle("Products Details");
+        getSupportActionBar().hide();
 
         // get data from adapter
         pname = getIntent().getStringExtra("pname");
@@ -55,6 +56,10 @@ public class EnvatoDetailsActivity extends AppCompatActivity {
         pvideo = getIntent().getStringExtra("pvideo");
         pprice = getIntent().getStringExtra("pprice");
         pimage = getIntent().getStringExtra("pimage");
+
+        /*zip link and password get from Envato adapter*/
+        p_zip_link = getIntent().getStringExtra("zip_link");
+        p_zip_password = getIntent().getStringExtra("zip_password");
 
 
         // pdfView = findViewById(R.id.pdfView);
@@ -78,13 +83,21 @@ public class EnvatoDetailsActivity extends AppCompatActivity {
         pdes_TV = findViewById(R.id.pdes_TV);
         filesize_TV = findViewById(R.id.filesize_TV);
 
+        /*imageview*/
         imageView = findViewById(R.id.imageIv);
 
+        /*button init*/
         pay_btn = findViewById(R.id.pay_btn);
-
-        // pay_btn.setText("Checkout Now "+ pprice );
+        back_btn = findViewById(R.id.back_btn);
 
         /*set on click listener*/
+        back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         plive_ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,8 +129,11 @@ public class EnvatoDetailsActivity extends AppCompatActivity {
                 intent.putExtra("pprice", pprice);
                 intent.putExtra("pcode", pcode);
 
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                /*product zip and password send on checkout activity*/
+                intent.putExtra("zip_link", p_zip_link);
+                intent.putExtra("zip_password", p_zip_password);
 
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
             }
         });

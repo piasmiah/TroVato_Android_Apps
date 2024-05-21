@@ -29,6 +29,11 @@ public class UdemyAdapters extends RecyclerView.Adapter<UdemyAdapters.MyViewHold
         this.context = context;
     }
 
+    public void setFilteredList(ArrayList<UdemyModels> filteredList) {
+        this.list = filteredList;
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public UdemyAdapters.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -49,7 +54,7 @@ public class UdemyAdapters extends RecyclerView.Adapter<UdemyAdapters.MyViewHold
         holder.name.setText(model.getCname());
         holder.date.setText(model.getDate());
         holder.time.setText(model.getTime());
-        holder.rating.setText(model.getCrating()+" ⭐");
+        holder.rating.setText(model.getCrating() + " ⭐");
         holder.lang.setText(model.getClanguage());
 
 

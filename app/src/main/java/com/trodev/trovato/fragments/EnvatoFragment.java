@@ -3,6 +3,7 @@ package com.trodev.trovato.fragments;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.trodev.trovato.adapters.EnvatoAdapter;
 import com.trodev.trovato.models.EnvatoModels;
 import com.trodev.trovato.R;
+import com.trodev.trovato.models.UdemyModels;
 
 import java.util.ArrayList;
 
@@ -32,6 +35,7 @@ public class EnvatoFragment extends Fragment {
     EnvatoAdapter adapter;
     FirebaseDatabase database;
     DatabaseReference reference;
+    SearchView search_view;
 
     public EnvatoFragment() {
         // Required empty public constructor
@@ -44,8 +48,23 @@ public class EnvatoFragment extends Fragment {
 
         recyclerView =view.findViewById(R.id.recyclerView);
         progressBar = view.findViewById(R.id.progressBar);
-
         progressBar.setVisibility(View.VISIBLE);
+
+        /*search view implement*/
+        search_view = view.findViewById(R.id.search_btn);
+        search_view.clearFocus();
+        search_view.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filterList(newText);
+                return true;
+            }
+        });
 
         model = new ArrayList<>();
 
@@ -93,5 +112,30 @@ public class EnvatoFragment extends Fragment {
         reference.keepSynced(true);
 
         return view;
+    }
+
+    public void filterList(String text) {
+
+        ArrayList<EnvatoModels> filteredList = new ArrayList<>();
+        for(EnvatoModels envatoModels : model )
+        {
+            if(envatoModels.getPname().toLowerCase().contains(text.toLowerCase()))
+            {
+                filteredList.add(envatoModels);
+                recyclerView.setVisibility(View.VISIBLE);
+            }
+        }
+
+        if(filteredList.isEmpty())
+        {
+            Toast.makeText(getContext(), "No data found", Toast.LENGTH_SHORT).show();
+            recyclerView.setVisibility(View.INVISIBLE);
+        }
+        else
+        {
+            adapter.setFilteredList(filteredList);
+        }
+
+
     }
 }

@@ -16,6 +16,7 @@ import com.squareup.picasso.Picasso;
 import com.trodev.trovato.activity.EnvatoDetailsActivity;
 import com.trodev.trovato.R;
 import com.trodev.trovato.models.EnvatoModels;
+import com.trodev.trovato.models.UdemyModels;
 
 import java.util.ArrayList;
 
@@ -27,6 +28,11 @@ public class EnvatoAdapter extends RecyclerView.Adapter<EnvatoAdapter.MyViewHold
     public EnvatoAdapter(ArrayList<EnvatoModels> list, Context context) {
         this.list = list;
         this.context = context;
+    }
+
+    public void setFilteredList(ArrayList<EnvatoModels> filteredList) {
+        this.list = filteredList;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -67,10 +73,14 @@ public class EnvatoAdapter extends RecyclerView.Adapter<EnvatoAdapter.MyViewHold
                 intent.putExtra("pvideo", model.getPvideo());
                 intent.putExtra("pprice", model.getPprice());
 
+                /*product zip file link and password*/
+                intent.putExtra("zip_link", model.getZip_link());
+                intent.putExtra("zip_password", model.getZip_password());
+
+                /*image sender*/
                 intent.putExtra("pimage", model.getImage());
 
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
                 context.startActivity(intent);
 
             }

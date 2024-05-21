@@ -69,17 +69,6 @@
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:fontFamily="@font/poppins_regular"
-                        android:text="https://forms.gle/XVKVHy6ieLS7A1eA7"
-                        android:autoLink="web"
-                        android:textAlignment="center"
-                        android:textColor="@color/app_color"
-                        android:textStyle="bold"
-                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/email"

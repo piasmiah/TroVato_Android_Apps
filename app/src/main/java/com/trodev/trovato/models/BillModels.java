@@ -2,12 +2,12 @@ package com.trodev.trovato.models;
 
 public class BillModels {
 
-    String aid, user_name, user_mobile, user_email, product_price, payment_date, payment_time, payment_year, payment_bill_no, product_code, transactionId, product_name, uid;
+    String aid, user_name, user_mobile, user_email, product_price, payment_date, payment_time, payment_year, payment_bill_no, product_code, transactionId, product_name, zip_link, zip_password, uid;
 
     public BillModels() {
     }
 
-    public BillModels(String aid, String user_name, String user_mobile, String user_email, String product_price, String payment_date, String payment_time, String payment_year, String payment_bill_no, String product_code, String transactionId, String product_name, String uid) {
+    public BillModels(String aid, String user_name, String user_mobile, String user_email, String product_price, String payment_date, String payment_time, String payment_year, String payment_bill_no, String product_code, String transactionId, String product_name, String zip_link, String zip_password, String uid) {
         this.aid = aid;
         this.user_name = user_name;
         this.user_mobile = user_mobile;
@@ -20,6 +20,8 @@ public class BillModels {
         this.product_code = product_code;
         this.transactionId = transactionId;
         this.product_name = product_name;
+        this.zip_link = zip_link;
+        this.zip_password = zip_password;
         this.uid = uid;
     }
 
@@ -117,6 +119,22 @@ public class BillModels {
 
     public void setProduct_name(String product_name) {
         this.product_name = product_name;
+    }
+
+    public String getZip_link() {
+        return zip_link;
+    }
+
+    public void setZip_link(String zip_link) {
+        this.zip_link = zip_link;
+    }
+
+    public String getZip_password() {
+        return zip_password;
+    }
+
+    public void setZip_password(String zip_password) {
+        this.zip_password = zip_password;
     }
 
     public String getUid() {

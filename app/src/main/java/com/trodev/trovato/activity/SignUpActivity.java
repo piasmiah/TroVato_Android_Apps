@@ -28,6 +28,8 @@ import com.trodev.trovato.models.UserStatus;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import papaya.in.sendmail.SendMail;
+
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView signin;
     private MaterialButton signup;
@@ -37,6 +39,10 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     DatabaseReference databaseReference;
     String Status;
     String usersname, email, password, number, image = String.valueOf(0);
+
+    /*new user registration from trovato*/
+    public static final String EMAIL ="trovatoltd@gmail.com";
+    public static final String PASSWORD ="hecjigwtioticugv";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,6 +130,13 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
         progressBar.setVisibility(View.VISIBLE);
 
+        SendMail mail = new SendMail(EMAIL, PASSWORD,
+                "trodevit@gmail.com",
+                "New User Registration",
+                "Assalamualaikum Dear Admin !" + "\n"
+                        + usersname + "is register our apps" +"\n"
+                        + "User Email is " + email);
+
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -141,6 +154,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                                                 Toast.makeText(SignUpActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
                                                 startActivity(new Intent(SignUpActivity.this, MainActivity.class));
                                                 save_to_user_list();
+                                                mail.execute();
                                                 finish();
 
                                             } else {
@@ -155,7 +169,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                         }
                     }
                 });
-
 
     }
 

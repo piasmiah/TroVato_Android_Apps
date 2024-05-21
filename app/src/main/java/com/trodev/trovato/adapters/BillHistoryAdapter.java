@@ -57,6 +57,8 @@ public class BillHistoryAdapter extends RecyclerView.Adapter<BillHistoryAdapter.
                 intent.putExtra("date", model.getPayment_date());
                 intent.putExtra("pcode", model.getProduct_code());
                 intent.putExtra("price", model.getProduct_price());
+                intent.putExtra("zip_link", model.getZip_link());
+                intent.putExtra("zip_password", model.getZip_password());
 
                 intent.putExtra("email", model.getUser_email());
                 intent.putExtra("name", model.getUser_name());

@@ -1,6 +1,7 @@
 package com.trodev.trovato.fragments;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -21,6 +22,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,10 +34,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
+import com.trodev.trovato.activity.ChangePasswordActivity;
 import com.trodev.trovato.activity.BillingHistoryActivity;
 import com.trodev.trovato.R;
 import com.trodev.trovato.activity.SignInActivity;
+import com.trodev.trovato.activity.SignUpActivity;
 import com.trodev.trovato.models.UserStatus;
 
 public class ProfileFragment extends Fragment {
@@ -55,22 +60,21 @@ public class ProfileFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         //init firebase
-        firebaseAuth= FirebaseAuth.getInstance();
-        user= firebaseAuth.getCurrentUser();
-        firebaseDatabase= FirebaseDatabase.getInstance();
-        databaseReference= firebaseDatabase.getReference("Registered_User");
+        firebaseAuth = FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference("Registered_User");
 
         //init views
-        avatarTv= view.findViewById(R.id.avatarTv);
-        nameTv= view.findViewById(R.id.nameTv);
-        emailTv= view.findViewById(R.id.emailTv);
-        numberTv= view.findViewById(R.id.numberTv);
-        progress_circular= view.findViewById(R.id.progress_circular);
+        avatarTv = view.findViewById(R.id.avatarTv);
+        nameTv = view.findViewById(R.id.nameTv);
+        emailTv = view.findViewById(R.id.emailTv);
+        numberTv = view.findViewById(R.id.numberTv);
+        progress_circular = view.findViewById(R.id.progress_circular);
         user_status = view.findViewById(R.id.user_status);
 
         /*linear layout*/
@@ -79,6 +83,8 @@ public class ProfileFragment extends Fragment {
         btn_privacy = view.findViewById(R.id.btn_privacy);
         btn_rate = view.findViewById(R.id.btn_rate);
         btn_deleteprofile = view.findViewById(R.id.btn_deleteprofile);
+        btn_cngpassword = view.findViewById(R.id.btn_cngpassword);
+        btn_logout = view.findViewById(R.id.btn_logout);
 
         cart_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,19 +94,46 @@ public class ProfileFragment extends Fragment {
         });
 
 
+        btn_cngpassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), ChangePasswordActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
         btn_deleteprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Delete request your profile", Toast.LENGTH_SHORT).show();
-                final Dialog dialog = new Dialog(getContext());
-                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(R.layout.delete_bottomsheet_layout);
 
-                dialog.show();
-                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
-                dialog.getWindow().setGravity(Gravity.BOTTOM);
+                ProgressDialog progressDialog = new ProgressDialog(getContext());
+                progressDialog.setTitle("Please wait");
+                progressDialog.setMessage("We delete your account");
+                progressDialog.setCancelable(false);
+                progressDialog.show();
+                FirebaseDatabase.getInstance().getReference().child("Registered_User").child("User_Status").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(null).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        progressDialog.dismiss();
+                        FirebaseAuth.getInstance().getCurrentUser().delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+
+                                if (task.isSuccessful()) {
+                                    progressDialog.dismiss();
+                                    Intent intent = new Intent(getActivity(), SignUpActivity.class);
+                                    startActivity(intent);
+                                    FirebaseAuth.getInstance().signOut();
+                                } else {
+
+                                }
+
+                            }
+                        });
+                    }
+                });
+
             }
         });
 
@@ -159,12 +192,12 @@ public class ProfileFragment extends Fragment {
                 progress_circular.setVisibility(View.INVISIBLE);
 
                 //check until required data get
-                for (DataSnapshot ds : snapshot.getChildren()){
+                for (DataSnapshot ds : snapshot.getChildren()) {
                     //get data from database
-                    String username = "Name: "+ ds.child("uname").getValue();
-                    String email = "Email: "+ ds.child("email").getValue();
-                    String number = "Mobile number: "+ ds.child("num").getValue();
-                    String image = ""+ ds.child("image").getValue();
+                    String username = "Name: " + ds.child("uname").getValue();
+                    String email = "Email: " + ds.child("email").getValue();
+                    String number = "Mobile number: " + ds.child("num").getValue();
+                    String image = "" + ds.child("image").getValue();
 
                     /*String cover = ""+ ds.child("cover").getValue();*/
 
@@ -190,12 +223,10 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        btn_cngpassword= view.findViewById(R.id.btn_cngpassword);
-        btn_logout = view.findViewById(R.id.btn_logout);
         btn_cngpassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // startActivity(new Intent(getContext(), ChangePasswordActivity.class));
+                startActivity(new Intent(getContext(), ChangePasswordActivity.class));
                 Toast.makeText(getContext(), "Password Recovery", Toast.LENGTH_SHORT).show();
             }
         });

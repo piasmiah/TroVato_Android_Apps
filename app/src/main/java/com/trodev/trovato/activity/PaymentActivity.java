@@ -37,6 +37,8 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
+import papaya.in.sendmail.SendMail;
+
 public class PaymentActivity extends AppCompatActivity {
 
     private static final String API_KEY = "5078f2cffe40017a8e7648b5ec98c763035f44b8";
@@ -71,13 +73,15 @@ public class PaymentActivity extends AppCompatActivity {
     DatabaseReference reference;
     private FirebaseUser user;
     private String userID;
-
     String biller_id;
     WebView webview;
     DatabaseReference databaseReference;
     MaterialButton payBtn;
     ImageView back_btn, status_img;
-    String user_name, user_mobile, user_price, user_pcode, user_email, user_bill_no, product_name;
+    String user_name, user_mobile, user_price, user_pcode, user_email, user_bill_no, product_name, zip_link, zip_password;
+
+    public static final String EMAIL ="trovatoltd@gmail.com";
+    public static final String PASSWORD ="hecjigwtioticugv";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -165,6 +169,10 @@ public class PaymentActivity extends AppCompatActivity {
         user_email = getIntent().getStringExtra("c_email");
         product_name = getIntent().getStringExtra("c_pname");
 
+        /*zip link and pass*/
+        zip_link = getIntent().getStringExtra("zip_link");
+        zip_password = getIntent().getStringExtra("zip_password");
+
         /*bill no*/
         long timeStamp = System.currentTimeMillis() / 1000;
         user_bill_no = Long.toString(timeStamp);
@@ -206,6 +214,14 @@ public class PaymentActivity extends AppCompatActivity {
                 storedFee = fee;
                 storedChargedAmount = chargeAmount;
 
+                /*when user order an product then it send*/
+                SendMail mail = new SendMail(EMAIL, PASSWORD,
+                        "trodevit@gmail.com",
+                        "New Order Placed",
+                        "Assalamualaikum Dear Admin !" + "\n"
+                                + user_name + " is ordered Envato-Element products" +"\n"
+                                + "User Email is " + email);
+
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -241,6 +257,9 @@ public class PaymentActivity extends AppCompatActivity {
                             webLayout.setVisibility(View.GONE);
                             /*save user data our*/
                             bill_payment();
+
+                            /*when user complete this order*/
+                            mail.execute();
 
                         } else if ("PENDING".equals(status)) {
                             // Handle payment pending case
@@ -287,11 +306,16 @@ public class PaymentActivity extends AppCompatActivity {
             SimpleDateFormat currentYear = new SimpleDateFormat("yyyy");
             String year = currentYear.format(calForYear.getTime());
 
+            String buying_link = "www.google.com";
+
             String key = databaseReference.push().getKey();
 
             if (key != null) {
                 /*set data on user_status*/
-                BillModels billModels = new BillModels(key, user_name, user_mobile, user_email, user_price, date, time, year, biller_id, user_pcode, storedTransactionId, product_name, FirebaseAuth.getInstance().getCurrentUser().getUid());
+                BillModels billModels = new BillModels(key, user_name, user_mobile, user_email, user_price,
+                        date, time, year, biller_id, user_pcode, storedTransactionId, product_name, zip_link,
+                        zip_password, FirebaseAuth.getInstance().getCurrentUser().getUid());
+
                 databaseReference.child(key).setValue(billModels);
                 Toast.makeText(this, "Invoice Saved Successful", Toast.LENGTH_SHORT).show();
                 status_img.setImageResource(R.drawable.successfull_img);
