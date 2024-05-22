@@ -1,5 +1,6 @@
 package com.trodev.trovato;
 
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 
@@ -27,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
         /*init views*/
         smoothBottomBar = findViewById(R.id.bottombar);
@@ -44,6 +44,11 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frameLayout, new HomeFragment());
         fragmentTransaction.commit();
+
+        /*set all status bar, navigation bar, toolbar color*/
+        smoothBottomBar.setBarBackgroundColor(Color.parseColor("#007AD2"));
+        getWindow().setNavigationBarColor(Color.parseColor("#007AD2"));
+        getWindow().setStatusBarColor(Color.parseColor("#007AD2"));
 
         /*smooth bar working process*/
         smoothBottomBar.setOnItemSelectedListener(new OnItemSelectedListener() {
