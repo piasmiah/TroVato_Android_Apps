@@ -3,6 +3,7 @@ package com.trodev.trovato.fragments;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -45,6 +46,7 @@ public class EnvatoFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_envato, container, false);
+
 
         recyclerView =view.findViewById(R.id.recyclerView);
         progressBar = view.findViewById(R.id.progressBar);
@@ -135,7 +137,16 @@ public class EnvatoFragment extends Fragment {
         {
             adapter.setFilteredList(filteredList);
         }
-
-
     }
+
+/*    @Override
+    public void onResume() {
+        super.onResume();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
+    }*/
 }

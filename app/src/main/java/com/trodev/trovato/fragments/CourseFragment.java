@@ -3,6 +3,7 @@ package com.trodev.trovato.fragments;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -116,26 +117,32 @@ public class CourseFragment extends Fragment {
     public void filterList(String text) {
 
         ArrayList<UdemyModels> filteredList = new ArrayList<>();
-        for(UdemyModels udemyModels : model )
-        {
-            if(udemyModels.getCname().toLowerCase().contains(text.toLowerCase()))
-            {
+        for (UdemyModels udemyModels : model) {
+            if (udemyModels.getCname().toLowerCase().contains(text.toLowerCase())) {
                 filteredList.add(udemyModels);
                 recyclerView.setVisibility(View.VISIBLE);
                 Toast.makeText(getContext(), "data found", Toast.LENGTH_SHORT).show();
             }
         }
 
-        if(filteredList.isEmpty())
-        {
+        if (filteredList.isEmpty()) {
             Toast.makeText(getContext(), "No data found", Toast.LENGTH_SHORT).show();
             recyclerView.setVisibility(View.INVISIBLE);
-        }
-        else
-        {
+        } else {
             adapter.setFilteredList(filteredList);
         }
 
-
     }
+
+/*    @Override
+    public void onResume() {
+        super.onResume();
+        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
+    }*/
 }

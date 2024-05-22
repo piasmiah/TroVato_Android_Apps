@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -24,13 +25,28 @@
             android:layout_height="70dp"
             android:layout_alignParentBottom="true"
             app:backgroundColor="@color/app_color"
-            app:cornerRadius="15dp"
+            app:cornerRadius="10dp"
             app:iconTint="@color/white"
             app:iconTintActive="@color/white"
             app:itemFontFamily="@font/space_grotesk_bold"
             app:menu="@menu/menu"
             app:textColor="@color/white" />
 
+        <!--
+                <me.ibrahimsn.lib.SmoothBottomBar
+            android:id="@+id/bottombar"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            app:backgroundColor="@color/app_color"
+            app:cornerRadius="15dp"
+            app:iconTint="@color/white"
+            app:iconTintActive="@color/white"
+            app:itemFontFamily="@font/poppins_regular"
+            app:menu="@menu/menu"
+            app:textColor="@color/white" />
+        -->
+
     </RelativeLayout>
 
-</LinearLayout>
+</androidx.drawerlayout.widget.DrawerLayout>
